@@ -1,8 +1,13 @@
 #!/bin/bash
+
 docker run -d --name jupyterlab \
 	-p 80:8888 \
 	-e JUPYTER_ENABLE_LAB=yes \
-	-v $(pwd)/../jupyterlab_notebooks:/home/jovyan/work \
-	-v $(pwd)/settings:/home/jovyan/settings \
+	-v $(pwd)/../.jupyter:/home/jovyan/.jupyter \
+	-v $(pwd)/../work:/home/jovyan/work \
+	-v $(pwd)/requirements.txt:/home/jovyan/requirements.txt \
 	jupyter/datascience-notebook
+
+docker exec -it jupyterlab bash -c "pip install -r requirements.txt"
+
 docker logs -f jupyterlab
