@@ -6,3 +6,6 @@ The JupyterLab settings are saved/loaded to/from the .jupyter directory in the h
 directory of user 'rbrecheisen'. Currently, JupyterLab is setup to work with password
 authentication. When you restart the container, the password setting should be pre-
 served.
+
+The startup script mounts the SSL key and crt files into the JupyterLab container so
+you can connect to it via https://espresso.maastrichtuniversity.nl.
