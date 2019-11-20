@@ -1,2 +1,3 @@
 # Extra packages installed on top of datascience-notebook
 xnat
+ipywidgets

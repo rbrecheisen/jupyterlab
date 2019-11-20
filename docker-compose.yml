@@ -1,0 +1,24 @@
+version: '2'
+services:
+  jupyterlab:
+    hostname: jupyterlab
+    image: jupyter/datascience-notebook
+    environment:
+      JUPYER_ENABLE_LAB: "yes"
+    ports:
+      - "443:8888"
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+  jupyterlab-postgres:
+    hostname: jupyterlab-postgres
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+  jupyterlab-mongo:
+    hostname: jupyterlab-mongo
+    image: mongodb
+
+# THIS FILE IS UNDER CONSTRUCTION!!

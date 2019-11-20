@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./stop-server.sh
+
 docker run -d --name jupyterlab \
 	-p 443:8888 \
 	-e JUPYTER_ENABLE_LAB=yes \
@@ -13,5 +15,7 @@ docker run -d --name jupyterlab \
 		--NotebookApp.certfile=/etc/ssl/jupyter/espresso.maastrichtuniversity.nl.crt
 
 docker exec -it jupyterlab bash -c "pip install -r requirements.txt"
+
+docker exec -it jupyterlab bash -c "jupyter labextension install @krassowski/jupyterlab_go_to_definition"
 
 docker logs -f jupyterlab
