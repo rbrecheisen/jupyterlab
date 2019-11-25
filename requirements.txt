@@ -1,0 +1,6 @@
+xnat
+pymongo
+ipwidgets
+pydicom
+simpleitk
+eve
