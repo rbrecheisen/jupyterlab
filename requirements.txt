@@ -1,6 +1,7 @@
 xnat
 pymongo
-ipwidgets
+ipywidgets
 pydicom
 simpleitk
 eve
+httpie
