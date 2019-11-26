@@ -25,23 +25,24 @@ services:
          - "8080:8080"
       # uncomment to overwrite the configuration files
       # volumes:
-      #   - ./etc/restheart-security.yml:/opt/restheart/etc/restheart-security.yml:ro
-      #   - ./etc/users.yml:/opt/restheart/etc/users.yml:ro
-      #   - ./etc/acl.yml:/opt/restheart/etc/acl.yml:ro
+      #    - ./etc/restheart-security.yml:/opt/restheart/etc/restheart-security.yml:ro
+      #    - ./etc/default-security.properties:/opt/restheart/etc/default-security.properties:ro
+      #    - ./etc/users.yml:/opt/restheart/etc/users.yml:ro
+      #    - ./etc/acl.yml:/opt/restheart/etc/acl.yml:ro
 
    restheart:
       image: softinstigate/restheart
       container_name: restheart
       command: ["--envFile", "etc/default.properties"]
       environment:
-         MONGO_URI: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongodb
+         MONGO_URI: mongodb://restheart:${MONGO_PASSWORD}@mongodb
       depends_on:
          - mongodb
       networks:
          - backend
       # uncomment to overwrite the configuration files
-      volumes:
-         - ./etc/restheart.yml:/opt/restheart/etc/restheart.yml:ro
+      # volumes:
+      #    - ./etc/restheart.yml:/opt/restheart/etc/restheart.yml:ro
       #    - ./etc/default.properties:/opt/restheart/etc/default.properties:ro
 
    mongodb:
@@ -50,11 +51,9 @@ services:
       container_name: restheart-mongo
       environment:
          # must match with MONGO_URI env variable of restheart service
-         MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+         MONGO_INITDB_ROOT_USERNAME: restheart
          MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
       command: --bind_ip_all --auth
-      ports:
-         - "27017:27017"
       volumes:
          - restheart-db:/data/db
       networks:

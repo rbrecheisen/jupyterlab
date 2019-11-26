@@ -1,7 +1,5 @@
 #!/bin/bash
 
-./stop-server.sh --no-restheart
-
 docker run -d --name jupyterlab \
 	-p 443:8888 \
 	-e JUPYTER_ENABLE_LAB=yes \
@@ -18,7 +16,7 @@ docker exec -it jupyterlab bash -c "pip install -r /home/jovyan/requirements.txt
 
 cd restheart
 
-./start-server.sh
+./start.sh
 
 cd ..
 
