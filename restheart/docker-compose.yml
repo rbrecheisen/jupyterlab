@@ -40,8 +40,8 @@ services:
       networks:
          - backend
       # uncomment to overwrite the configuration files
-      # volumes:
-      #    - ./etc/restheart.yml:/opt/restheart/etc/restheart.yml:ro
+      volumes:
+         - ./etc/restheart.yml:/opt/restheart/etc/restheart.yml:ro
       #    - ./etc/default.properties:/opt/restheart/etc/default.properties:ro
 
    mongodb:

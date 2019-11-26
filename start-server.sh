@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./stop-server.sh
+./stop-server.sh --no-restheart
 
 docker run -d --name jupyterlab \
 	-p 443:8888 \
