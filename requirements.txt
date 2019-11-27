@@ -1,3 +1,8 @@
+# requirements.txt
+# Additional packages useful for JupyterLab
+# WARNING: do not change the contents of this file from inside JupyterLab. The
+# file was mounted inside the Docker container and is read-only.
+
 xnat
 pymongo
 ipywidgets

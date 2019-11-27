@@ -2,6 +2,5 @@
 
 export MONGO_PASSWORD=$(cat ~/password-mongodb.txt)
 
-docker-compose up -d
-
+docker-compose down; docker-compose up -d
 docker-compose logs -f
