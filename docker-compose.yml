@@ -10,11 +10,11 @@ services:
     volumes:
       - /home/rbrecheisen/.jupyter:/home/jovyan/.jupyter
       - /home/rbrecheisen/work:/home/jovyan/work
-      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.key:/etc/ssl/jupyter/espresso.key
-      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.crt:/etc/ssl/jupyter/espresso.crt
-      - /home/rbrecheisen/jupyterlab/requirements.txt:/home/jovyan/requirements.txt
-      - /home/rbrecheisen/jupyterlab/start-notebook.sh:/home/jovyan/start-notebook.sh
-    command: bash -c "/home/jovyan/start-notebook.sh"
+      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.key:/etc/ssl/jupyter/espresso.key:ro
+      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.crt:/etc/ssl/jupyter/espresso.crt:ro
+      - /home/rbrecheisen/jupyterlab/requirements.txt:/home/jovyan/requirements.txt:ro
+      - /home/rbrecheisen/jupyterlab/notebook-start.sh:/home/jovyan/notebook-start.sh:ro
+    command: bash -c "/home/jovyan/notebook-start.sh"
   restheart-security:
     image: softinstigate/restheart-security
     container_name: restheart-security
