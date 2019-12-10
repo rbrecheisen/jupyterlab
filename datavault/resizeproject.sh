@@ -71,4 +71,6 @@ sudo veracrypt -d
 
 mv ${DATAVAULT_DIR}/containers/${PROJECT}_new.hc ${DATAVAULT_DIR}/containers/${PROJECT}.hc
 
+rm -rf ${VOLUME_MOUNT_PATH}
+
 echo "Done"
