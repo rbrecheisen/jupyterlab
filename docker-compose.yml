@@ -15,7 +15,7 @@ services:
       - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.crt:/etc/ssl/jupyter/espresso.crt:ro
       #- /home/rbrecheisen/jupyterlab/requirements.txt:/home/jovyan/requirements.txt:ro
       - /home/rbrecheisen/jupyterlab/notebook-start.sh:/home/jovyan/notebook-start.sh:ro
-      - /home/rbrecheisen/datavault-mounts:/home/jovyan/datavault:ro
+      - /home/rbrecheisen/datavault-mounts:/home/jovyan/datavault
     command: bash -c "/home/jovyan/notebook-start.sh"
   restheart-security:
     image: softinstigate/restheart-security
