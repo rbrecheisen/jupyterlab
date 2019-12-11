@@ -2,19 +2,19 @@
 
 PROJECT=${1}
 if [ "${PROJECT}" == "" ]; then
-	echo "Usage: resizeproject.sh <project name> <new size> <new password>"
+	echo "Usage: updateproject.sh <project name> <new size> <new password>"
 	exit 1
 fi
 
 SIZE=${2}
 if [ "${SIZE}" == "" ]; then
-	echo "Usage: resizeproject.sh <project name> <new size> <new password>"
+	echo "Usage: updateproject.sh <project name> <new size> <new password>"
 	exit 1
 fi
 
 PASSWORD=${3}
 if [ "${PASSWORD}" == "" ]; then
-	echo "Usage: resizeproject.sh <project name> <new size> <new password>"
+	echo "Usage: updateproject.sh <project name> <new size> <new password>"
 	exit 1
 fi
 
@@ -69,8 +69,8 @@ sudo cp -R ${DATAVAULT_MOUNT_DIR}/${PROJECT}/* ${DATAVAULT_MOUNT_DIR}/${PROJECT}
 
 sudo veracrypt -d
 
-mv ${DATAVAULT_DIR}/containers/${PROJECT}_new.hc ${DATAVAULT_DIR}/containers/${PROJECT}.hc
+sudo mv ${DATAVAULT_DIR}/containers/${PROJECT}_new.hc ${DATAVAULT_DIR}/containers/${PROJECT}.hc
 
-rm -rf ${VOLUME_MOUNT_PATH}
+sudo rm -rf ${VOLUME_MOUNT_PATH}
 
 echo "Done"
