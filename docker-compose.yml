@@ -1,53 +1,19 @@
 version: "3"
 services:
   jupyterlab:
-    #image: jupyter/datascience-notebook
     build: .
     container_name: jupyterlab
+    expose:
+      - "8888"
     ports:
-      - "443:8888"
+      - "8888:8888"
     environment:
       JUPYTER_ENABLE_LAB: "yes"
     volumes:
-      - /home/rbrecheisen/.jupyter:/home/jovyan/.jupyter
-      - /home/rbrecheisen/work:/home/jovyan/work
-      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.key:/etc/ssl/jupyter/espresso.key:ro
-      - /home/rbrecheisen/ssl/espresso.maastrichtuniversity.nl.crt:/etc/ssl/jupyter/espresso.crt:ro
-      - /home/rbrecheisen/jupyterlab/requirements.txt:/home/jovyan/requirements.txt:ro
-      - /home/rbrecheisen/jupyterlab/notebook-start.sh:/home/jovyan/notebook-start.sh:ro
-      - /home/rbrecheisen/datavault-mounts:/home/jovyan/datavault
+      - jupyter_data:/home/jovyan/work
+      - $HOME/jupyterlab/jupyterlab/requirements.txt:/home/jovyan/requirements.txt:ro
+      - $HOME/jupyterlab/jupyterlab/notebook-start.sh:/home/jovyan/notebook-start.sh:ro
     command: bash -c "/home/jovyan/notebook-start.sh"
-  restheart-security:
-    image: softinstigate/restheart-security
-    container_name: restheart-security
-    depends_on:
-      - restheart
-    networks:
-      - backend
-    ports:
-      - "8080:8080"
-  restheart:
-    image: softinstigate/restheart
-    container_name: restheart
-    command: ["--envFile", "etc/default.properties"]
-    environment:
-      MONGO_URI: mongodb://restheart:${MONGO_PASSWORD}@mongodb
-    depends_on:
-      - mongodb
-    networks:
-      - backend
-  mongodb:
-    image: mongo:4.0
-    container_name: restheart-mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: restheart
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-    command: --bind_ip_all --auth
-    volumes:
-      - restheart-db:/data/db
-    networks:
-      - backend
-networks:
-  backend:
 volumes:
-  restheart-db:
+  jupyter_data:
+

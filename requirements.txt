@@ -16,3 +16,10 @@ scikit-plot
 yellowbrick
 tensorflow
 keras
+matplotlib
+seaborn
+seaborn-image
+scikit-learn
+opencv-python
+barbell2
+
